@@ -91,7 +91,7 @@ const getVector=(matriz,n,vectorResult)=>{
 }
 //termina funciones
 //inicia
-let n=5  ///asignar valor de tamaño de matrix  n*n
+let n=3  ///asignar valor de tamaño de matrix  n*n
 console.log('tamaño de matriz n*n : ',n);
 vector=LLenarVector(n); //genera el vector para transformar a matriz
 console.log('vector inicial :',vector.result);
