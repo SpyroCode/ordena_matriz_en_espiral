@@ -87,29 +87,28 @@ const getVector=(matriz,n,vectorResult)=>{
 
 //inicia
 vector=LLenarVector(n);
-console.log(vector.n);
+
+
+console.log(vector.result.length)
 //primera vuelta
 matriz=LlenarMatrix(vector.result,vector.n).result;
 console.log('matriz inicial',matriz);
 n=LlenarMatrix(vector.result,vector.n).n
 vectorResult.push(...extraerFilas(matriz,n))
-
 vector=getVector(matriz,n,vectorResult)
 ///segunda vuelta
 matriz=LlenarMatrix(vector.result,vector.n).result;
 console.log('segunda matriz :',matriz);
 n=LlenarMatrix(vector.result,vector.n).n
 vectorResult.push(...extraerFilas(matriz,n))
-
 vector=getVector(matriz,n,vectorResult)
 //tercera vuelta
 matriz=LlenarMatrix(vector.result,vector.n).result;
-console.log('segunda matriz :',matriz);
+console.log('tercer  matriz :',matriz);
 n=LlenarMatrix(vector.result,vector.n).n
 vectorResult.push(...extraerFilas(matriz,n))
-
 vector=getVector(matriz,n,vectorResult)
-console.log(vector.n);
+console.log(vector.result.length);
 //resultado
 console.log('vector resultado :',vectorResult);
 

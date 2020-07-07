@@ -1,80 +1,112 @@
-let n=3;
-let element = new Array();
-let element2=new Array(); //auxiliar
-let result2=new Array(); //auxiliar
-let result=new Array();
-let iterador=1;
+// ordena en forma de espiral 
+// en sentido  de las manecillas 
+// de reloj una matriz cuadratica n*n
+// dada con valor de n en la linea 94 asignar el valor de n 
 
-//llenar cada posición en array de n*n
+//inicializar variables vacias
+let vector=[]
+let matriz=[]
+let vectorResult=[]
+//funciones
+const LLenarVector=(n)=>{
+    let iterador= 1;
+    let tamVector = n*n;
+    let result=new Array()
+    for(let i=0;i<tamVector;i++){
 
-for(let i=0;i<n;i++){
-    element[i] = new Array(n);
-    for(let j=0;j<n;j++){
-        
-        element[i][j] = iterador;
+        result[i] = iterador;
         iterador++;
+    }
+    
+
+    return {
+        result,
+        n
+    };
+}
+
+const LlenarMatrix=(vector,n)=>{
+    //console.log(n);
+    let result = new Array();
+    let iterador=0;
+    for(let i=0;i<n;i++){
+        result[i] = new Array(n);
+        for(let j=0;j<n;j++){
+            
+            result[i][j] = vector[iterador];
+            iterador++;
+            
+        }
         
     }
     
-}
+    return {
+        
+        result,n
+    }
 
-console.log(element,n);
-//extracion filas y columnas
-const matriz1=(element)=>{
+    
+    
+    
+}
+const extraerFilas=(element,n)=>{
     let cont=0;
     let x=0
     let y=0
     let result=new Array();
     
     for(let i=0;i<n;i++){
-        result[cont]=element[y][i];
-        x=i;
+        result[cont]=element[x][i];
+        y=i;
         cont++;
     }
     
     for(let i=1;i<n;i++){
-            result[cont]=element[i][x];
-            y=i;
+            result[cont]=element[i][y];
             cont++;
     }
 
     return result
 }
-//lenado de array de unidimensional resultante
-result=matriz1(element,n)
-num=0;
-for(let i=0;i<n;i++){
-    for(let j=0;j<n;j++){
-        
-        if (!result.includes(element[i][j])) {
-           
-            element2[num] = element[i][j];
-            num++;
+
+const getVector=(matriz,n,vectorResult)=>{
+    num=0;
+    let result=[]
+    for(let i=0;i<n;i++){
+        for(let j=0;j<n;j++){
+            
+            if (!vectorResult.includes(matriz[i][j])) {
+                
+                result[num] = matriz[i][j];
+                num++;
+            }
         }
     }
-}
-
-element2=element2.reverse()
-n=Math.sqrt(num);
-iterador=0;
-element=[];
-for(let i=0;i<n;i++){
-    element[i] = new Array(n);
-    for(let j=0;j<n;j++){
-        
-        element[i][j] = element2[iterador];
-        iterador++;
-        
+    result=result.reverse()
+    n=Math.sqrt(num);
+    return {
+        result,
+        n
     }
-    
 }
+//termina funciones
+//inicia
+let n=5  ///asignar valor de tamaño de matrix  n*n
+console.log('tamaño de matriz n*n : ',n);
+vector=LLenarVector(n); //genera el vector para transformar a matriz
+console.log('vector inicial :',vector.result);
+//nicio de algoritmo
+do {
+    matriz=LlenarMatrix(vector.result,vector.n).result;
+    console.log('ordenando matriz',matriz);
+    n=LlenarMatrix(vector.result,vector.n).n
+    vectorResult.push(...extraerFilas(matriz,n))
+    vector=getVector(matriz,n,vectorResult)
+} while (vector.result.length>0);
 
-console.log(element,n);
-result2=matriz1(element,n)
-result.push(...result2);
-//console.log(element,n);
-//console.log(element2);
-console.log(result);
-//console.log(result3);
+
+//resultado
+console.log('vector resultado :',vectorResult);
+
 
 
